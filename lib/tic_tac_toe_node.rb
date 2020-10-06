@@ -8,6 +8,10 @@ class TicTacToeNode
     @prev_move_pos = prev_move_pos
   end
 
+  def win_row?(mark)
+    @board.rows.any? { |row| row.all? { |el| el == mark } }
+  end
+
   def losing_node?(evaluator)
   end
 
