@@ -34,6 +34,7 @@ class TicTacToeNode
   end
 
   def winning_node?(evaluator)
+    win?(evaluator) || win_childern?(evaluator)
   end
 
   # This method generates an array of all moves that can be made after
