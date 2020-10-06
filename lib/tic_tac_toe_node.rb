@@ -21,6 +21,10 @@ class TicTacToeNode
     dig_2 = (0..3).all? { |i| (@board[[i, 3-i-1]] == mark) }
     return dig_1 || dig_2
   end
+  
+  def win?(mark)
+    win_row?(mark) || win_col?(mark) || win_diagonal?(mark)
+  end
 
   def losing_node?(evaluator)
   end
