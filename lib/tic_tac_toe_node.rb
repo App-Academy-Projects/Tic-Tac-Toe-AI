@@ -12,6 +12,10 @@ class TicTacToeNode
     @board.rows.any? { |row| row.all? { |el| el == mark } }
   end
 
+  def win_col?(mark)
+    @board.rows.transpose.any? { |col| col.all? { |el| el == mark } }
+  end
+
   def losing_node?(evaluator)
   end
 
