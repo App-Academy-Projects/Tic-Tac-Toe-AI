@@ -26,6 +26,10 @@ class TicTacToeNode
     win_row?(mark) || win_col?(mark) || win_diagonal?(mark)
   end
 
+  def win_childern?(mark)
+    children.any? { |child| child.win?(mark) }
+  end
+
   def losing_node?(evaluator)
   end
 
