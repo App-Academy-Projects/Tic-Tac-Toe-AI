@@ -16,6 +16,12 @@ class TicTacToeNode
     @board.rows.transpose.any? { |col| col.all? { |el| el == mark } }
   end
 
+  def win_diagonal?(mark)
+    dig_1 = (0..3).all? { |i| (@board[[i, i]] == mark) }
+    dig_2 = (0..3).all? { |i| (@board[[i, 3-i-1]] == mark) }
+    return dig_1 || dig_2
+  end
+
   def losing_node?(evaluator)
   end
 
