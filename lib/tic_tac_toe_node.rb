@@ -8,33 +8,12 @@ class TicTacToeNode
     @prev_move_pos = prev_move_pos
   end
 
-  def win_row?(mark)
-    @board.rows.any? { |row| row.all? { |el| el == mark } }
-  end
-
-  def win_col?(mark)
-    @board.rows.transpose.any? { |col| col.all? { |el| el == mark } }
-  end
-
-  def win_diagonal?(mark)
-    dig_1 = (0..3).all? { |i| (@board[[i, i]] == mark) }
-    dig_2 = (0..3).all? { |i| (@board[[i, 3-i-1]] == mark) }
-    return dig_1 || dig_2
-  end
-  
-  def win?(mark)
-    win_row?(mark) || win_col?(mark) || win_diagonal?(mark)
-  end
-
   def win_childern?(mark)
-    children.any? { |child| child.win?(mark) }
-  end
-
-  def losing_node?(evaluator)
+    children.any? { |child| mark == child.board.winner }
   end
 
   def winning_node?(evaluator)
-    win?(evaluator) || win_childern?(evaluator)
+    evaluator == board.winner || win_childern?(evaluator)
   end
 
   # This method generates an array of all moves that can be made after
