@@ -12,6 +12,16 @@ class TicTacToeNode
     children.any? { |child| mark == child.board.winner }
   end
 
+  def losing_node?(evaluator)
+    opponent = evaluator == :x ? :o : :x
+    return opponent == board.winner if board.over?
+    if evaluator == next_mover_mark
+      children.all? { |child| child.losing_node?(evaluator) }
+    else
+      children.any? { |child| child.losing_node?(evaluator) }
+    end
+  end
+
   def winning_node?(evaluator)
     evaluator == board.winner || win_childern?(evaluator)
   end
